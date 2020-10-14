@@ -78,4 +78,15 @@ public class MyDatabase extends SQLiteOpenHelper {
 
         return cursor;
     }
+
+    public boolean onupdate(String id,String name,String age,String gender){
+        SQLiteDatabase sqLiteDatabase =  this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ID,id);
+        contentValues.put(NAME,name);
+        contentValues.put(AGE,age);
+        contentValues.put(GENDER,gender);
+        sqLiteDatabase.update(TABLE_NAME,contentValues,ID+" = ?" , new String[]{id});
+        return true;
+    }
 }

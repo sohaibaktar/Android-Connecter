@@ -13,8 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-private EditText nameEdittext ,ageEdittext ,genderEdittext;
-private Button addbutton,displaydata;
+private EditText nameEdittext ,ageEdittext ,genderEdittext,idEdittext;
+private Button addbutton,displaydata,updatedata;
 
     MyDatabase myDatabase;
     @Override
@@ -28,18 +28,22 @@ private Button addbutton,displaydata;
         nameEdittext = (EditText) findViewById(R.id.nameid);
         ageEdittext = (EditText) findViewById(R.id.ageid);
         genderEdittext = (EditText) findViewById(R.id.genderid);
+        idEdittext = (EditText) findViewById(R.id.ideditid);
 
         addbutton = (Button) findViewById(R.id.addbuttonid);
         displaydata = (Button) findViewById(R.id.Displaydatabuttonid);
+        updatedata = (Button) findViewById(R.id.Updatedatabuttonid);
 
 
         addbutton.setOnClickListener(this);
         displaydata.setOnClickListener(this);
+        updatedata.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
+        String id = idEdittext.getText().toString();
         String name = nameEdittext.getText().toString();
         String age = ageEdittext.getText().toString();
         String gender = genderEdittext.getText().toString();
@@ -76,6 +80,17 @@ private Button addbutton,displaydata;
                 stringBuffer.append("Gender : "+cursor.getString(3)+"\n\n\n");
             }
             showData("ResultSet",stringBuffer.toString());
+        }
+        if(view.getId()== R.id.Updatedatabuttonid){
+
+            boolean isupdate = myDatabase.onupdate(id,name,age,gender);
+            if(isupdate == true){
+                Toast.makeText(getApplicationContext(), "Row is succesfully updated" , Toast.LENGTH_LONG).show();
+
+            }else {
+                Toast.makeText(getApplicationContext(), "unsuccesfull" , Toast.LENGTH_LONG).show();
+
+            }
         }
 
 
