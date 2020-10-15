@@ -118,6 +118,14 @@
         android:textSize="20sp"
         style="@style/Widget.AppCompat.Button.Small"
         android:textStyle="bold"/>
+    <Button
+        android:id="@+id/deletebuttonid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Data"
+        android:textSize="20sp"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:textStyle="bold"/>
 
 
 </LinearLayout>
